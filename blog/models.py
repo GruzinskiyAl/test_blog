@@ -15,11 +15,12 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
     def __str__(self):
-        return self.title
+        return str(self.id) +'_'+ self.title
 
 # class User(models.Model):
-#     login = models.CharField(max_length='20')
+#     login = models.CharField(primary_key = True, max_length='20')
 #     email = models.EmailField
 #     password = models.CharField()
 #     gender_choice = (('male', 'Male'), ('female', 'Female'))
