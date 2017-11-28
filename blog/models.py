@@ -19,12 +19,6 @@ class Post(models.Model):
     def __str__(self):
         return str(self.id) +'_'+ self.title
 
-# class User(models.Model):
-#     login = models.CharField(primary_key = True, max_length='20')
-#     email = models.EmailField
-#     password = models.CharField()
-#     gender_choice = (('male', 'Male'), ('female', 'Female'))
-#     gender = models.CharField(choices=gender_choice)
 
 
 
