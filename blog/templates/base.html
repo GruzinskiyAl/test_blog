@@ -52,13 +52,19 @@
     </style>
 </head>
 <body>
-<div class="header">
-    {% if username %}
-    <span><a href="logout">Logout ({{ username }})</a></span>
-    {% else %}
-    <span><a href="login">Login</a></span>
-    {% endif %}
+<div>
+    <a href="{% url 'post_new' %}">Create New Post</a>
 </div>
+<div>
+    <a href="{% url 'post_list' %}">To Blog</a>
+</div>
+<!--<div class="header">-->
+    <!--{% if username %}-->
+    <!--<a href="logout">Logout ({{ username }})</a>-->
+    <!--{% else %}-->
+    <!--<span><a href="login">Login</a></span>-->
+    <!--{% endif %}-->
+<!--</div>-->
 {%block content %}
 {% endblock %}
 </body>
