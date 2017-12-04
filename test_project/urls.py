@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework import routers
+# from test_project.blog import views
+#
+#
+# router = routers.DefaultRouter()
+# router.register(r'posts', views.PostViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('blog.urls')),
+    # url(r'^', include(router.urls)),
+    url(r'^api/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -10,20 +10,10 @@ from rest_framework.response import Response
 from .serializers import PostSerializer
 
 
-@api_view(['GET', 'POST'])
 def post_list(request):
-    if request.method == 'GET':
-        username = auth.get_user(request).username
-        posts = Post.objects.order_by('published_date')
-        serializer = PostSerializer(posts)
-        return Response(serializer.data, 'index.html', {'posts': posts, 'username': username})
-
-
-# Create your views here.
-# def post_list(request):
-#     username = auth.get_user(request).username
-#     posts = Post.objects.order_by('published_date').reverse()
-#     return render(request, 'index.html', {'posts': posts, 'username': username})
+    username = auth.get_user(request).username
+    posts = Post.objects.order_by('pk').reverse()
+    return render(request, 'index.html', {'posts': posts, 'username': username})
 
 
 def post_detail(request, pk):
@@ -44,3 +34,12 @@ def post_new(request):
     else:
         form = PostForm()
     return render(request, 'create_new_post.html', {'form': form})
+
+
+# @api_view(['GET'])
+# def PostViewSet(request):
+#     if request.method == 'GET':
+#         username = auth.get_user(request).username
+#         posts = Post.objects.order_by('published_date').reverse()
+#         serializer = PostSerializer(posts, many=True)
+#         return Response(serializer.data)
