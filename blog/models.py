@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     text = models.TextField()
     create_date = models.DateField(auto_now=True)
-    published_date = models.DateField(blank=True, null=True)
+    published_date = models.DateField(auto_now_add=True)
 
     class Meta:
         verbose_name = "Post"

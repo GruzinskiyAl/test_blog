@@ -3,11 +3,19 @@
 {% block content %}
     <div class="post">
         <h1 class="title">{{ post.title }}</h1>
+        <p class="author">{{post.author}}</p>
         <p class="text">{{ post.text|linebreaksbr }}</p>
         {% if post.published_date %}
             <div class="published_date">
                 {{ post.published_date }}
             </div>
+        {% else %}
+            <div class="published_date">
+                {{ post.create_date }}
+            </div>
         {% endif %}
+        <div>
+            <a href="{% url 'post_change' pk=post.pk  %}">Change</a>
+        </div>
     </div>
 {% endblock %}
