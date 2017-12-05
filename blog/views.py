@@ -24,17 +24,15 @@ def post_detail(request, pk):
 
 def post_change(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    data = {'title': post.title,
-            'text': post.text,
-            }
-    form = PostForm(data)
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
+            data = form.cleaned_data
+            post.title = data['title']
+            post.text = data['text']
+            # post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
+            post.save(['title', 'text'])
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
@@ -56,7 +54,7 @@ def post_new(request):
 
 
 @api_view(['GET', 'POST'])
-def PostViewSet(request):
+def post_list_set(request):
     if request.method == 'GET':
         posts = Post.objects.order_by('pk').reverse()
         serializer = PostSerializer(posts, many=True)
@@ -68,3 +66,23 @@ def PostViewSet(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def post_detail_view(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'GET':
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = PostSerializer(post, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        post.delete()
+        # return redirect('post_list')
+        return Response(status=status.HTTP_204_NO_CONTENT)

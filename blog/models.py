@@ -15,10 +15,5 @@ class Post(models.Model):
         verbose_name = "Post"
         verbose_name_plural = "Posts"
 
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
     def __str__(self):
         return str(self.pk) + '_' + self.title
