@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&z*cv$&-tgn@1w@2ps39+nh==*v-)=)kb$p_+xvc@v^z)80%y_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,16 +79,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django_test_db',
-        'USER' : 'admin',
-        'PASSWORD' : 'qwerty12345',
-        'HOST' : 'localhost',
-        'PORT' : '',
+        'USER': 'admin',
+        'PASSWORD': 'qwerty12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -30,9 +30,8 @@ def post_change(request, pk):
             data = form.cleaned_data
             post.title = data['title']
             post.text = data['text']
-            # post = form.save(commit=False)
-            post.author = request.user
-            post.save(['title', 'text'])
+            post.author = request.user.username
+            post.save()
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
@@ -84,5 +83,4 @@ def post_detail_view(request, pk):
 
     elif request.method == 'DELETE':
         post.delete()
-        # return redirect('post_list')
         return Response(status=status.HTTP_204_NO_CONTENT)
