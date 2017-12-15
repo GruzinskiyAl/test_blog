@@ -1,0 +1,45 @@
+A:link {
+    text-decoration: none;
+    color:#585858;
+}
+A:visited {
+    text-decoration: none;
+    color:#585858;
+}
+A:active { text-decoration: none; }
+A:hover {
+    text-decoration: none;
+    color: #BDBDBD;
+}
+.post{
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 2%;
+    border: 1px solid #BDBDBD;
+}
+.title{
+    font-size: 1.7em;
+    color:#585858;
+    padding-left: 5%;
+    border-bottom: 2px solid #BDBDBD;
+}
+.author{
+    font-size: 1em;
+    color: #BDBDBD;
+    padding-left: 80%;
+}
+.text{
+    font-size: 1.5em;
+    color: #151515;
+}
+.published_date{
+    font-size: 1em;
+    color: #DF0101;
+    padding-left: 80%;
+}
+.header{
+    font-size:1.7em;
+    padding: 5px;
+    padding-left:80%;
+    position:absolute;
+}

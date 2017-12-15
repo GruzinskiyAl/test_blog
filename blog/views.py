@@ -84,3 +84,11 @@ def post_detail_view(request, pk):
     elif request.method == 'DELETE':
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def message(request):
+    if request.method == 'GET':
+        mes = 'Hello world!'
+        # serializer = PostSerializer(mes)
+        return Response(mes)
